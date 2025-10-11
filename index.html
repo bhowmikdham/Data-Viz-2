@@ -1,8 +1,23 @@
+<!DOCTYPE html>
 <html>
-    <title>
-        hello
-    </title>
-        <body>
-        HEY MY NAME IS BHOWMIK
-        </body>
+<head>
+  <meta charset="utf-8" />
+  <title>DV2 — Hero Map</title>
+  <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+  <style>
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; max-width: 1040px; margin: 24px auto; }
+    #hero { margin-top: 12px; }
+  </style>
+</head>
+<body>
+  <h1>Where Australians Live — Hero Map</h1>
 
+  <div id="hero"></div>
+
+  <script>
+    vegaEmbed('#hero','js/hero_map.vg.json',{actions:false});
+  </script>
+</body>
+</html>
