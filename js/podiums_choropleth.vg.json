@@ -24,53 +24,84 @@
 ],
 
 
-  "layer": [
-    {
-      "data": {
-        "url": "https://raw.githubusercontent.com/FIT3179/Vega-Lite/main/2_symbol_map/js/ne_110m_admin_0_countries.topojson",
-        "format": { "type": "topojson", "feature": "ne_110m_admin_0_countries" }
-      },
-      "mark": { "type": "geoshape", "fill": "#161619", "stroke": "#1f1f22", "strokeWidth": 0.5 }
-    },
+  "projection": { "type": "mercator", "scale": 180 },
 
-    {
-      "data": {
-        "url": "https://raw.githubusercontent.com/FIT3179/Vega-Lite/main/2_symbol_map/js/ne_110m_admin_0_countries.topojson",
-        "format": { "type": "topojson", "feature": "ne_110m_admin_0_countries" }
+"layer": [
+  
+  {
+    "data": {
+      "url": "https://raw.githubusercontent.com/FIT3179/Vega-Lite/main/2_symbol_map/js/ne_110m_admin_0_countries.topojson",
+      "format": { "type": "topojson", "feature": "ne_110m_admin_0_countries" }
+    },
+    "transform": [
+      { "filter": "datum.properties.ADMIN != 'Antarctica'" }
+    ],
+    "mark": { "type": "geoshape", "fill": "#161619", "stroke": "#1f1f22", "strokeWidth": 0.5 }
+  },
+
+  
+  {
+    "data": {
+      "url": "https://raw.githubusercontent.com/FIT3179/Vega-Lite/main/2_symbol_map/js/ne_110m_admin_0_countries.topojson",
+      "format": { "type": "topojson", "feature": "ne_110m_admin_0_countries" }
+    },
+    "transform": [
+      { "filter": "datum.properties.ADMIN != 'Antarctica'" },
+      {
+        "calculate": "datum.properties.ADMIN === 'United States of America' ? 'United States' : datum.properties.ADMIN",
+        "as": "ADMIN_FIX"
       },
-      "transform": [
-        {
-          "calculate": "datum.properties.ADMIN === 'United States of America' ? 'United States' : datum.properties.ADMIN",
-          "as": "ADMIN_FIX"
-        },
-        {
-          "lookup": "ADMIN_FIX",
-          "from": {
-            "data": { "url": "data/mclaren_podiums.csv" },
-            "key": "Country",
-            "fields": ["Podiums", "Wins", "Second", "Third"]
-          }
-        },
-        { "calculate": "isValid(datum[metric]) ? datum[metric] : null", "as": "metricValue" }
-      ],
-      "mark": { "type": "geoshape", "stroke": "#1f1f22", "strokeWidth": 0.5 },
-      "encoding": {
-        "color": {
-          "field": "metricValue",
-          "type": "quantitative",
-          "title": {"expr": "metric"},
-          "scale": { "range": ["#1a1a1d", "#481216", "#8d1b22", "#c2282f", "#ff3b3b"] }
-        },
-        "tooltip": [
-          { "field": "ADMIN_FIX", "title": "Country" },
-          { "field": "Podiums" },
-          { "field": "Wins" },
-          { "field": "Second" },
-          { "field": "Third" }
-        ]
-      }
+      {
+        "lookup": "ADMIN_FIX",
+        "from": {
+          "data": { "url": "data/mclaren_podiums.csv" },
+          "key": "Country",
+          "fields": ["Podiums","Wins","Second","Third"]
+        }
+      },
+      { "calculate": "isValid(datum[metric]) ? datum[metric] : null", "as": "metricValue" }
+    ],
+    "mark": { "type": "geoshape", "stroke": "#1f1f22", "strokeWidth": 0.5 },
+    "encoding": {
+      "color": {
+        "field": "metricValue", "type": "quantitative", "title": { "expr": "metric" },
+        "scale": { "range": ["#1a1a1d","#481216","#8d1b22","#c2282f","#ff3b3b"] }
+      },
+      "tooltip": [
+        { "field": "ADMIN_FIX", "title": "Country" },
+        { "field": "Podiums" }, { "field": "Wins" }, { "field": "Second" }, { "field": "Third" }
+      ]
     }
-  ],
+  },
+
+  
+  {
+    "name": "annotation-line-italy",
+    "data": { "values": [ { "lon0": 12.6, "lat0": 41.9, "lon1": 17.2, "lat1": 44.8 } ] },
+    "mark": { "type": "rule", "color": "#ffffff", "opacity": 0.7 },
+    "encoding": {
+      "longitude":  { "field": "lon0", "type": "quantitative" },
+      "latitude":   { "field": "lat0", "type": "quantitative" },
+      "longitude2": { "field": "lon1" },
+      "latitude2":  { "field": "lat1" }
+    }
+  },
+
+  
+  {
+    "name": "annotation-text-italy",
+    "data": { "values": [ { "note": "Italy: 57", "lon": 17.2, "lat": 44.8 } ] },
+    "mark": {
+      "type": "text", "fontWeight": "bold", "color": "#ffffff",
+      "align": "left", "baseline": "middle", "dx": 6
+    },
+    "encoding": {
+      "longitude": { "field": "lon", "type": "quantitative" },
+      "latitude":  { "field": "lat", "type": "quantitative" },
+      "text":      { "field": "note" }
+    }
+  }
+],
 
   "config": {
     "view": { "stroke": null, "fill": "#0b0b0c" },

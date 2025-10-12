@@ -15,7 +15,7 @@
   <!-- Page Header -->
   <header id="site-header" class="site__header">
   <div class="container header__bar">
-    <h1 id="site-title" class="title title--xl">McLaren Data Visualisation</h1>
+    <h1 id="site-title" class="title title--xl">McLaren: From Underdog to Champion</h1>
 
     <!-- Logo (PNG) -->
     <a class="brand" href="https://www.mclaren.com/racing/" target="_blank" rel="noopener" aria-label="McLaren Racing">
@@ -55,19 +55,30 @@
     vegaEmbed('#map-viz', 'js/podiums_choropleth.vg.json', { actions:false });
   </script>
 
-  <!-- Driver Wins Section -->
   <section id="driver-wins-section" class="section">
   <div class="container">
     <h2 class="title title--md section__title">Driver win distribution</h2>
     <p class="section__lead">Wins achieved while driving for McLaren.</p>
 
+    <!-- Legend -->
+    <div id="driver-legend" class="legend">
+      <span class="legend__item">
+        <span class="legend__swatch legend__swatch--current" aria-hidden="true"></span>
+        Current drivers (Norris, Piastri)
+      </span>
+      <span class="legend__item">
+        <span class="legend__swatch legend__swatch--former" aria-hidden="true"></span>
+        Former drivers
+      </span>
+    </div>
+
     <div id="driver-wins-viz" class="viz viz--full"></div>
   </div>
 </section>
-
 <script>
   vegaEmbed('#driver-wins-viz', 'js/Driver_comp.vg.json', { actions: false });
 </script>
+
 
 </body>
 </html>

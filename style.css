@@ -178,3 +178,35 @@ body.site{
 }
 
 #driver-wins-section { padding-top: 8px; }
+/* ---------- Legend (reusable) ---------- */
+.legend{
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 6px 0 10px;
+  flex-wrap: wrap;
+}
+.legend__item{
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--muted, #a6a6ac);
+  font-size: 13px;
+}
+.legend__swatch{
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  display: inline-block;
+}
+
+/* keep swatch colors in sync with the chart */
+:root{
+  --papaya: #ff7a00;  /* Norris, Piastri */
+  --f1red:  #c2282f;  /* everyone else */
+}
+.legend__swatch--current{ background: var(--papaya); }
+.legend__swatch--former{  background: var(--f1red);  }
+
+/* optional: tiny glow so swatches pop on dark bg */
+.legend__swatch{ box-shadow: 0 0 0 1px rgba(255,255,255,0.05); }
