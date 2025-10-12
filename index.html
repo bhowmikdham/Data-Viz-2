@@ -1,17 +1,56 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>F1 Choropleth — McLaren Podiums</title>
+  <title>McLaren Data Visualisation</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- Vega libraries -->
   <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
-  <style>body{background:#0b0b0c;color:#e6e6e8;font-family:system-ui;-apple-system:Segoe UI,Roboto,sans-serif;max-width:1040px;margin:24px auto}</style>
+  <!-- Site styles -->
+  <link rel="stylesheet" href="style.css" />
 </head>
-<body>
-  <h1>McLaren F1 Podiums by Country</h1>
-  <div id="map"></div>
-  <script>vegaEmbed('#map','js/podiums_choropleth.vg.json',{actions:false});</script>
+<body class="site">
+  <!-- Page Header -->
+  <header id="site-header" class="site__header">
+  <div class="container header__bar">
+    <h1 id="site-title" class="title title--xl">McLaren Data Visualisation</h1>
+
+    <!-- Logo (PNG) -->
+    <a class="brand" href="https://www.mclaren.com/racing/" target="_blank" rel="noopener" aria-label="McLaren Racing">
+      <img src="logo2-removebg-preview.png" alt="McLaren logo" />
+    </a>
+  </div>
+
+  <div class="container">
+    <p id="site-tagline" class="subtitle">Exploring performance across circuits and countries</p>
+  </div>
+</header>
+
+
+  <!-- Map Section -->
+  <main id="content" class="site__content">
+    <section id="map-section" class="section">
+      <div class="container">
+        <h2 class="title title--md section__title">Podiums by Country</h2>
+        <p class="section__lead">
+          Choropleth shaded by total podiums (darker = more). Source: GP Racing Stats; Map: Natural Earth.
+        </p>
+
+        <!-- Visualization host (no border frame) -->
+        <div id="map-viz" class="viz viz--full"></div>
+
+        <p class="caption" id="map-caption">
+          Use this as the hero visual; additional charts can follow in new <code>section</code> blocks.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <!-- Scripts: embed the Vega-Lite spec -->
+  <script>
+    vegaEmbed('#map-viz', 'js/podiums_choropleth.vg.json', { actions:false });
+  </script>
 </body>
 </html>
-

@@ -1,0 +1,129 @@
+/* =============================
+   Theme tokens (reusable)
+   ============================= */
+:root{
+  --bg: #0b0b0c;        /* page background */
+  --ink: #e8e8ea;       /* primary text */
+  --muted: #a6a6ac;     /* secondary text */
+  --accent: #ff3b3b;    /* F1 red accent */
+  --panel: transparent; /* no panels/frames */
+  --maxw: 1100px;       /* content width */
+  --gap: 24px;          /* base spacing */
+}
+
+/* =============================
+   Base / Layout
+   ============================= */
+*{ box-sizing: border-box; }
+html,body{ height:100%; }
+body.site{
+  margin:0;
+  background: var(--bg);
+  color: var(--ink);
+  font: 16px/1.55 system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+}
+
+.container{
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* =============================
+   Header / Titles
+   ============================= */
+.site__header{
+  padding: calc(var(--gap) * 1.5) 0 var(--gap);
+}
+.title{
+  margin: 0;
+  font-weight: 700;
+  letter-spacing: .2px;
+}
+.title--xl{
+  font-size: clamp(28px, 4vw, 40px);
+  color: var(--ink);
+}
+.title--md{
+  font-size: clamp(18px, 2.2vw, 24px);
+  color: var(--ink);
+  margin-bottom: 6px;
+}
+.subtitle{
+  margin: 6px 0 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+/* =============================
+   Sections
+   ============================= */
+.site__content{ padding: 0 0 calc(var(--gap) * 2); }
+.section{ padding: calc(var(--gap) * 1.25) 0; }
+.section__title{ margin-bottom: 4px; }
+.section__lead{
+  margin: 0 0 12px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+/* =============================
+   Visualisations (no borders)
+   ============================= */
+.viz{
+  background: transparent;       /* no frame/panel */
+  border: none;                  /* ensure no border */
+  border-radius: 0;              /* no rounding/frame */
+  padding: 0;                    /* flush edge-to-edge */
+}
+.viz--full{
+  width: 100%;
+  min-height: 520px;             /* space reserved before Vega renders */
+}
+
+/* Vega-Embed container; hide action buttons, no frame */
+.vega-embed{
+  background: transparent;
+  border: none;
+  padding: 0;
+}
+.vega-embed .vega-actions{ display: none; }
+
+/* =============================
+   Captions & Helpers
+   ============================= */
+.caption{
+  margin: 10px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+/* Accent utilities you can reuse later */
+.u-accent{ color: var(--accent); }
+
+/* Responsive */
+@media (max-width: 640px){
+  .container{ padding: 0 16px; }
+}
+
+/* title left, logo right */
+.header__bar{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;  /* pushes logo to the right */
+  gap: 16px;
+}
+
+/* logo sizing */
+.brand { display: inline-flex; align-items: center; }
+.brand img{
+  height: 90px;     /* tweak as needed */
+  width: 180px;
+  display: block;
+}
+
+/* (optional) absolute pin to the page’s top-right instead of flex */
+.site__header{ position: relative; }
+.brand--abs { position: absolute; top: 18px; right: 20px; }
+@media (max-width: 640px){ .brand img{ height: 28px; } }
+

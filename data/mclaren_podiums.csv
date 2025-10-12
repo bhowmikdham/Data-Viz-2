@@ -1,33 +1,32 @@
-Country,Podiums
-Italy,57
-United Kingdom,39
-Germany,37
-Spain,35
-Brazil,33
-Belgium,31
-Canada,30
-Monaco,30
-United States,29
-Japan,29
-Australia,28
-Hungary,27
-France,22
-Austria,20
-South Africa,13
-Portugal,11
-China,11
-Mexico,9
-Malaysia,9
-Netherlands,9
-Singapore,8
-Turkey,6
-Bahrain,6
-United Arab Emirates,5
-Argentina,5
-Qatar,3
-Sweden,2
-South Korea,2
-India,1
-Switzerland,1
-Azerbaijan,1
-
+Country,Podiums,Wins,Second,Third
+Italy,57,17,22,18
+United Kingdom,39,15,11,13
+Germany,37,8,17,12
+Spain,35,9,12,14
+Brazil,33,12,9,12
+Belgium,31,15,9,7
+Canada,30,13,9,8
+Monaco,30,16,9,5
+United States,29,8,9,12
+Japan,29,9,8,12
+Australia,28,12,7,9
+Hungary,27,13,10,4
+France,22,5,7,10
+Austria,20,7,9,4
+South Africa,13,2,5,6
+Portugal,11,3,6,2
+China,11,3,6,2
+Mexico,9,3,3,3
+Malaysia,9,2,3,4
+Netherlands,9,5,2,2
+Singapore,8,2,3,3
+Turkey,6,2,2,2
+Bahrain,6,1,1,4
+United Arab Emirates,5,2,1,2
+Argentina,5,2,2,1
+Qatar,3,0,1,2
+Sweden,2,1,1,0
+South Korea,2,0,2,0
+India,1,0,0,1
+Switzerland,1,0,0,1
+Azerbaijan,1,1,0,0
