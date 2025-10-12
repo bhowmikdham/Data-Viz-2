@@ -1,3 +1,38 @@
+:root{
+  --font-heading: "Barlow Condensed", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --font-body: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --font-compact: "Roboto Condensed", var(--font-body); /* optional for numerics */
+}
+
+/* Apply fonts */
+body.site { font-family: var(--font-body); }
+.title { font-family: var(--font-heading); font-weight: 800; letter-spacing: .02em; }
+.subtitle, .section__lead, .caption, .controls label { font-family: var(--font-body); }
+
+/* F1-ish title treatment */
+.title--xl {
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  font-weight: 800;
+}
+
+/* Section titles: compact + uppercase for that paddock-board feel */
+.title--md {
+  font-family: var(--font-heading);
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  font-weight: 700;
+}
+
+/* Optional: compact numerics for axes/legends */
+.vega-embed .mark-text, .vega-embed .role-axis-label, .vega-embed .role-legend-label {
+  font-family: var(--font-compact);
+  font-feature-settings: "tnum" 1, "lnum" 1; /* tabular lining numerals */
+}
+
+.controls label { text-transform: uppercase; letter-spacing: .08em; font-weight: 600; }
+
+
 /* =============================
    Theme tokens (reusable)
    ============================= */
