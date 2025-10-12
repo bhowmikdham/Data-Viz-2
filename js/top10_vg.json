@@ -1,0 +1,28 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 980, "height": 260, "background": "#0b0b0c",
+
+  "params": [
+    {
+      "name": "metric",
+      "value": "Podiums",
+      "bind": {"input":"select","name":"Show: ","options":["Podiums","Wins","Second","Third"]}
+    }
+  ],
+
+  "data": { "url": "data/mclaren_podiums_by_country.csv" },
+  "transform": [
+    { "calculate": "datum[metric]", "as": "metricValue" },
+    { "filter": "isValid(datum.metricValue)" },
+    { "window": [{"op":"rank","as":"rk"}], "sort": [{"field":"metricValue","order":"descending"}] },
+    { "filter": "datum.rk <= 10" }
+  ],
+  "mark": {"type":"bar"},
+  "encoding": {
+    "y": {"field":"Country","type":"nominal","sort":"-x","axis":{"labelColor":"#e6e6e8","title":null}},
+    "x": {"field":"metricValue","type":"quantitative","axis":{"labelColor":"#e6e6e8","title":{"expr":"metric"}}},
+    "tooltip": [{"field":"Country"},{"field":"metricValue","title":{"expr":"string"}}],
+    "color": {"value":"#c2282f"}
+  },
+  "config": {"view":{"stroke":null}}
+}

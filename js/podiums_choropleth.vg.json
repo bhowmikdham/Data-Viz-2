@@ -10,8 +10,21 @@
   "background": "#0b0b0c",
   "projection": { "type": "mercator" },
 
+  "params": [
+  {
+    "name": "metric",
+    "value": "Podiums",
+    "bind": {
+      "input": "select",
+      "name": "Show: ",
+      "options": ["Podiums","Wins","Second","Third"],
+      "element": "#map-controls"
+    }
+  }
+],
+
+
   "layer": [
-    
     {
       "data": {
         "url": "https://raw.githubusercontent.com/FIT3179/Vega-Lite/main/2_symbol_map/js/ne_110m_admin_0_countries.topojson",
@@ -20,7 +33,6 @@
       "mark": { "type": "geoshape", "fill": "#161619", "stroke": "#1f1f22", "strokeWidth": 0.5 }
     },
 
-    
     {
       "data": {
         "url": "https://raw.githubusercontent.com/FIT3179/Vega-Lite/main/2_symbol_map/js/ne_110m_admin_0_countries.topojson",
@@ -28,8 +40,7 @@
       },
       "transform": [
         {
-          "calculate":
-            "datum.properties.ADMIN === 'United States of America' ? 'United States' : datum.properties.ADMIN",
+          "calculate": "datum.properties.ADMIN === 'United States of America' ? 'United States' : datum.properties.ADMIN",
           "as": "ADMIN_FIX"
         },
         {
@@ -37,24 +48,25 @@
           "from": {
             "data": { "url": "data/mclaren_podiums.csv" },
             "key": "Country",
-            "fields": ["Podiums"]
+            "fields": ["Podiums", "Wins", "Second", "Third"]
           }
-        }
+        },
+        { "calculate": "isValid(datum[metric]) ? datum[metric] : null", "as": "metricValue" }
       ],
       "mark": { "type": "geoshape", "stroke": "#1f1f22", "strokeWidth": 0.5 },
       "encoding": {
         "color": {
-          "field": "Podiums",
+          "field": "metricValue",
           "type": "quantitative",
-          "title": "Podiums",
-          "scale": {
-            "domain": [0, 60],
-            "range": ["#1a1a1d", "#481216", "#8d1b22", "#c2282f", "#ff3b3b"]
-          }
+          "title": {"expr": "metric"},
+          "scale": { "range": ["#1a1a1d", "#481216", "#8d1b22", "#c2282f", "#ff3b3b"] }
         },
         "tooltip": [
           { "field": "ADMIN_FIX", "title": "Country" },
-          { "field": "Podiums", "title": "Podiums" }
+          { "field": "Podiums" },
+          { "field": "Wins" },
+          { "field": "Second" },
+          { "field": "Third" }
         ]
       }
     }

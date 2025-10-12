@@ -1,0 +1,20 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {"text":"McLaren Driver Win Distribution","anchor":"start","color":"#f5f5f7"},
+  "width": 980, "height": 480, "background": "#0b0b0c",
+  "data": {"url": "data/Driver.csv"},
+  "transform": [
+    { "filter": "isValid(datum.WinsWithMcLaren)" },
+    { "window":[{"op":"rank","as":"rk"}], "sort":[{"field":"WinsWithMcLaren","order":"descending"}] }
+  ],
+  "mark": {"type":"bar"},
+  "encoding": {
+    "y": { "field":"Driver","type":"nominal","sort":"-x",
+           "axis":{"labelColor":"#e6e6e8","title":null,"labelLimit":140,"labelOverlap":"greedy"} },
+    "x": { "field":"WinsWithMcLaren","type":"quantitative",
+           "axis":{"labelColor":"#e6e6e8","title":"Wins"}, "scale":{"nice":true,"zero":true} },
+    "color": {"value":"#c2282f"},
+    "tooltip": [ {"field":"Driver"}, {"field":"WinsWithMcLaren","title":"Wins"} ]
+  },
+  "config": { "view":{"stroke":null}, "axis":{"titleColor":"#d9d9db","labelColor":"#d9d9db"} }
+}

@@ -34,16 +34,18 @@
     <section id="map-section" class="section">
       <div class="container">
         <h2 class="title title--md section__title">Podiums by Country</h2>
-        <p class="section__lead">
-          Choropleth shaded by total podiums (darker = more). Source: GP Racing Stats; Map: Natural Earth.
-        </p>
-
+        
+        <div id="map-controls" class="controls controls--inline"></div>
         <!-- Visualization host (no border frame) -->
         <div id="map-viz" class="viz viz--full"></div>
 
-        <p class="caption" id="map-caption">
-          Use this as the hero visual; additional charts can follow in new <code>section</code> blocks.
+        <p class="caption" id="map-section">
+          Choropleth shaded by total podiums (darker = more). Source: GP Racing Stats; Map: Natural Earth.
         </p>
+      </div>
+      <div>
+      
+      </div>
       </div>
     </section>
   </main>
@@ -52,5 +54,20 @@
   <script>
     vegaEmbed('#map-viz', 'js/podiums_choropleth.vg.json', { actions:false });
   </script>
+
+  <!-- Driver Wins Section -->
+  <section id="driver-wins-section" class="section">
+  <div class="container">
+    <h2 class="title title--md section__title">Driver win distribution</h2>
+    <p class="section__lead">Wins achieved while driving for McLaren.</p>
+
+    <div id="driver-wins-viz" class="viz viz--full"></div>
+  </div>
+</section>
+
+<script>
+  vegaEmbed('#driver-wins-viz', 'js/Driver_comp.vg.json', { actions: false });
+</script>
+
 </body>
 </html>
