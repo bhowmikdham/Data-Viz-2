@@ -1,247 +1,178 @@
-:root{
-  --font-heading: "Barlow Condensed", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
-  --font-body: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
-  --font-compact: "Roboto Condensed", var(--font-body); /* optional for numerics */
-}
-
-/* Apply fonts */
-body.site { font-family: var(--font-body); }
-.title { font-family: var(--font-heading); font-weight: 800; letter-spacing: .02em; }
-.subtitle, .section__lead, .caption, .controls label { font-family: var(--font-body); }
-
-/* F1-ish title treatment */
-.title--xl {
-  text-transform: uppercase;
-  letter-spacing: .06em;
-  font-weight: 800;
-}
-
-/* Section titles: compact + uppercase for that paddock-board feel */
-.title--md {
-  font-family: var(--font-heading);
-  text-transform: uppercase;
-  letter-spacing: .08em;
-  font-weight: 700;
-}
-
-/* Optional: compact numerics for axes/legends */
-.vega-embed .mark-text, .vega-embed .role-axis-label, .vega-embed .role-legend-label {
-  font-family: var(--font-compact);
-  font-feature-settings: "tnum" 1, "lnum" 1; /* tabular lining numerals */
-}
-
-.controls label { text-transform: uppercase; letter-spacing: .08em; font-weight: 600; }
-
+/* =========================================================
+   McLAREN F1 THEME — style.css
+   NOTE: Add this to your HTML <head>:
+   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Inter:wght@400;600&family=Roboto+Condensed:wght@500;700&display=swap" rel="stylesheet">
+   ========================================================= */
 
 /* =============================
-   Theme tokens (reusable)
+   THEME TOKENS (one place)
    ============================= */
 :root{
-  --bg: #0b0b0c;        /* page background */
-  --ink: #e8e8ea;       /* primary text */
-  --muted: #a6a6ac;     /* secondary text */
-  --accent: #ff3b3b;    /* F1 red accent */
-  --panel: transparent; /* no panels/frames */
-  --maxw: 1100px;       /* content width */
-  --gap: 24px;          /* base spacing */
+  /* Fonts */
+  --font-heading: "Barlow Condensed", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --font-body:    "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --font-compact: "Roboto Condensed", var(--font-body);
+
+  /* Colors */
+  --bg:     #0b0b0c;   /* asphalt */
+  --ink:    #e8e8ea;   /* primary text */
+  --muted:  #a6a6ac;   /* secondary text */
+  --accent: #ff3b3b;   /* F1 red accent */
+  --grid:   #1f1f22;   /* separators / borders */
+
+  /* Chart swatches */
+  --papaya: #ff7a00;   /* current drivers */
+  --f1red:  #c2282f;   /* default bars */
+
+  /* Layout */
+  --panel: transparent;
+  --maxw:  1100px;
+  --gap:   24px;
 }
 
 /* =============================
-   Base / Layout
+   BASE / LAYOUT / TYPE
    ============================= */
 *{ box-sizing: border-box; }
 html,body{ height:100%; }
 body.site{
-  margin:0;
-  background: var(--bg);
-  color: var(--ink);
-  font: 16px/1.55 system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  margin:0; background:var(--bg); color:var(--ink);
+  font: 16px/1.55 var(--font-body);
 }
+.container{ max-width:var(--maxw); margin:0 auto; padding:0 20px; }
 
-.container{
-  max-width: var(--maxw);
-  margin: 0 auto;
-  padding: 0 20px;
-}
+.site__header{ padding: calc(var(--gap) * 1.5) 0 var(--gap); }
+.header__bar{ display:flex; align-items:center; justify-content:space-between; gap:16px; }
 
-/* =============================
-   Header / Titles
-   ============================= */
-.site__header{
-  padding: calc(var(--gap) * 1.5) 0 var(--gap);
-}
-.title{
-  margin: 0;
-  font-weight: 700;
-  letter-spacing: .2px;
-}
-.title--xl{
-  font-size: clamp(28px, 4vw, 40px);
-  color: var(--ink);
-}
-.title--md{
-  font-size: clamp(18px, 2.2vw, 24px);
-  color: var(--ink);
-  margin-bottom: 6px;
-}
-.subtitle{
-  margin: 6px 0 0;
-  color: var(--muted);
-  font-size: 14px;
-}
+.title{ margin:0; font-family:var(--font-heading); font-weight:800; letter-spacing:.02em; }
+.title--xl{ font-size: clamp(28px, 4vw, 40px); text-transform: uppercase; letter-spacing:.06em; }
+.title--md{ font-size: clamp(18px, 2.2vw, 24px); font-family:var(--font-heading); text-transform: uppercase; letter-spacing:.08em; font-weight:700; margin-bottom:6px; }
 
-/* =============================
-   Sections
-   ============================= */
+.subtitle{ margin:6px 0 0; color:var(--muted); font-size:14px; }
+
 .site__content{ padding: 0 0 calc(var(--gap) * 2); }
 .section{ padding: calc(var(--gap) * 1.25) 0; }
-.section__title{ margin-bottom: 4px; }
-.section__lead{
-  margin: 0 0 12px;
-  color: var(--muted);
-  font-size: 14px;
-}
+.section__title{ margin-bottom:4px; }
+.section__lead{ margin:0 0 12px; color:var(--muted); font-size:14px; }
+
+.caption{ margin:10px 0 0; color:var(--muted); font-size:13px; }
 
 /* =============================
-   Visualisations (no borders)
+   BRAND (logo)
    ============================= */
-.viz{
-  background: transparent;       /* no frame/panel */
-  border: none;                  /* ensure no border */
-  border-radius: 0;              /* no rounding/frame */
-  padding: 0;                    /* flush edge-to-edge */
-}
-.viz--full{
-  width: 100%;
-  min-height: 520px;             /* space reserved before Vega renders */
-}
-
-/* Vega-Embed container; hide action buttons, no frame */
-.vega-embed{
-  background: transparent;
-  border: none;
-  padding: 0;
-}
-.vega-embed .vega-actions{ display: none; }
-
-/* =============================
-   Captions & Helpers
-   ============================= */
-.caption{
-  margin: 10px 0 0;
-  color: var(--muted);
-  font-size: 13px;
-}
-
-/* Accent utilities you can reuse later */
-.u-accent{ color: var(--accent); }
-
-/* Responsive */
-@media (max-width: 640px){
-  .container{ padding: 0 16px; }
-}
-
-/* title left, logo right */
-.header__bar{
-  display: flex;
-  align-items: center;
-  justify-content: space-between;  /* pushes logo to the right */
-  gap: 16px;
-}
-
-/* logo sizing */
-.brand { display: inline-flex; align-items: center; }
+.brand{ display:inline-flex; align-items:center; }
 .brand img{
-  height: 90px;     /* tweak as needed */
-  width: 180px;
-  display: block;
+  height:63px; width:auto; display:block;
+  filter: drop-shadow(0 0 2px rgba(255,255,255,0.12));
 }
+@media (max-width: 640px){ .brand img{ height:32px; } }
 
-/* (optional) absolute pin to the page’s top-right instead of flex */
-.site__header{ position: relative; }
-.brand--abs { position: absolute; top: 18px; right: 20px; }
-@media (max-width: 640px){ .brand img{ height: 28px; } }
+/* =============================
+   CONTROLS (filters/menus)
+   ============================= */
+.controls{ margin:8px 0 12px; }
+.controls--inline{ display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
 
-
-
-
-
-/* container alignment */
-.controls{ margin: 8px 0 12px; }
-.controls--inline{ display:flex; align-items:center; gap:10px; }
-
-/* label text (the 'Show:' prefix) */
 .controls label, .vega-bindings label{
   color: var(--muted);
   font-size: 13px;
-  letter-spacing: .04em;
+  letter-spacing: .08em;
   text-transform: uppercase;
+  font-weight: 600;
 }
 
-/* dropdown */
 .controls select, .vega-bindings select{
-  background: #121214;
-  color: var(--ink);
-  border: 1px solid var(--grid);
-  border-radius: 10px;
-  padding: 8px 12px;
-  outline: none;
-  font: inherit;
-  cursor: pointer;
-  /* remove native arrows and add a subtle custom one */
-  appearance: none;
+  background:#121214; color:var(--ink);
+  border:1px solid var(--grid);
+  border-radius:10px; padding:8px 12px;
+  appearance:none; outline:none; font:inherit; cursor:pointer;
+  /* custom arrow */
   background-image:
     linear-gradient(45deg, transparent 50%, #a6a6ac 50%),
     linear-gradient(135deg, #a6a6ac 50%, transparent 50%);
   background-position:
     calc(100% - 18px) calc(50% - 3px),
     calc(100% - 12px) calc(50% - 3px);
-  background-size: 6px 6px, 6px 6px;
-  background-repeat: no-repeat;
-  padding-right: 36px; /* room for arrow */
+  background-size:6px 6px, 6px 6px;
+  background-repeat:no-repeat;
+  padding-right:36px;
 }
-
 .controls select:hover{ border-color:#2a2a2e; }
-.controls select:focus{
-  border-color: var(--accent);
-  box-shadow: 0 0 0 3px rgba(255,59,59,0.15);
-}
+.controls select:focus{ border-color: var(--accent); box-shadow:0 0 0 3px rgba(255,59,59,0.15); }
 
-/* small screen tweak */
 @media (max-width:640px){
   .controls--inline{ flex-wrap:wrap; gap:8px; }
 }
 
-#driver-wins-section { padding-top: 8px; }
-/* ---------- Legend (reusable) ---------- */
+/* =============================
+   LEGEND (HTML)
+   ============================= */
 .legend{
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  margin: 6px 0 10px;
-  flex-wrap: wrap;
+  display:flex; align-items:center; gap:14px;
+  margin:6px 0 10px; flex-wrap:wrap;
 }
 .legend__item{
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  color: var(--muted, #a6a6ac);
-  font-size: 13px;
+  display:inline-flex; align-items:center; gap:8px;
+  color:var(--muted); font-size:13px;
 }
 .legend__swatch{
-  width: 14px;
-  height: 14px;
-  border-radius: 3px;
-  display: inline-block;
+  width:14px; height:14px; border-radius:3px;
+  box-shadow:0 0 0 1px rgba(255,255,255,0.05);
+}
+.legend__swatch--current{ background:var(--papaya); }
+.legend__swatch--former{  background:var(--f1red);  }
+
+/* =============================
+   VIZ CONTAINERS (no frames)
+   ============================= */
+.viz{ background:transparent; border:none; padding:0; }
+.viz--full{ width:100%; min-height:520px; }
+
+.vega-embed{ background:transparent; border:none; padding:0; }
+.vega-embed .vega-actions{ display:none; }
+
+/* Compact numerics for axes/legends */
+.vega-embed .mark-text,
+.vega-embed .role-axis-label,
+.vega-embed .role-legend-label{
+  font-family: var(--font-compact);
+  font-feature-settings: "tnum" 1, "lnum" 1; /* tabular, lining numerals */
 }
 
-/* keep swatch colors in sync with the chart */
-:root{
-  --papaya: #ff7a00;  /* Norris, Piastri */
-  --f1red:  #c2282f;  /* everyone else */
+/* =============================
+   VEGA TOOLTIP (global theme)
+   ============================= */
+.vg-tooltip{
+  background:#111114 !important; color:#e6e6e8 !important;
+  border:1px solid var(--grid) !important; border-radius:10px !important;
+  box-shadow:0 8px 24px rgba(0,0,0,.4) !important;
+  font-family: var(--font-compact) !important; font-size:13px !important;
+  padding:8px 10px !important;
 }
-.legend__swatch--current{ background: var(--papaya); }
-.legend__swatch--former{  background: var(--f1red);  }
+.vg-tooltip table{ border-collapse: collapse !important; }
+.vg-tooltip .key{
+  color: var(--muted) !important; padding-right:10px !important;
+  white-space:nowrap !important; letter-spacing:.02em !important;
+}
+.vg-tooltip .value{
+  text-align:right !important; font-variant-numeric: tabular-nums !important;
+  white-space:normal !important; max-width:260px !important;
+}
+.vg-tooltip td{ padding:2px 0 !important; }
 
-/* optional: tiny glow so swatches pop on dark bg */
-.legend__swatch{ box-shadow: 0 0 0 1px rgba(255,255,255,0.05); }
+/* =============================
+   UTILITIES & RESPONSIVE
+   ============================= */
+#driver-wins-section { padding-top: 8px; }
+.u-accent{ color: var(--accent); }
+@media (max-width:640px){ .container{ padding:0 16px; } }
+
+/* =============================
+   OPTIONAL ACCESSIBILITY/PRINT
+   ============================= */
+:focus-visible{ outline:2px solid var(--papaya); outline-offset:2px; }
+@media print{
+  body{ background:#fff; color:#000; }
+  .viz, .vega-embed{ background:#fff; }
+  .legend__item{ color:#000; }
+}
