@@ -10,6 +10,7 @@
   <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
   <!-- Site styles -->
   <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.6/build/pure-min.css">
   <!--Font Link-->>
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Inter:wght@400;500;600&family=Roboto+Condensed:wght@500;700&display=swap" rel="stylesheet">
 </head>
@@ -33,29 +34,42 @@
 
   <!-- Map Section -->
   <main id="content" class="site__content">
-    <section id="map-section" class="section">
-      <div class="container">
-        <h2 class="title title--md section__title">Podiums by Country</h2>
+  <section id="map-and-list-section" class="section">
+    <div class="container">
+      <h2 class="title title--md section__title">Podiums by Country</h2>
+      <div id="map-controls" class="controls controls--inline"></div>
+
+      <div class="layout-grid">
         
-        <div id="map-controls" class="controls controls--inline"></div>
-        <!-- Visualization host (no border frame) -->
-        <div id="map-viz" class="viz viz--full"></div>
+        <div id="map-viz" class="viz viz--map"></div>
 
-        <p class="caption" id="map-section">
-          Choropleth shaded by total podiums (darker = more). Source: GP Racing Stats; Map: Natural Earth.
-        </p>
+        <div class="toplist-container">
+          <h3 class="title title--sm">Top 10 Countries</h3>
+          <ol class="toplist">
+            <li><span class="rank">#1</span> <img src="https://flagcdn.com/w40/it.png" alt="Flag of Italy" class="flag"> <span class="name">Italy</span> <span class="value">57</span></li>
+            <li><span class="rank">#2</span> <img src="https://flagcdn.com/w40/gb.png" alt="Flag of United Kingdom" class="flag"> <span class="name">United Kingdom</span> <span class="value">39</span></li>
+            <li><span class="rank">#3</span> <img src="https://flagcdn.com/w40/de.png" alt="Flag of Germany" class="flag"> <span class="name">Germany</span> <span class="value">37</span></li>
+            <li><span class="rank">#4</span> <img src="https://flagcdn.com/w40/es.png" alt="Flag of Spain" class="flag"> <span class="name">Spain</span> <span class="value">35</span></li>
+            <li><span class="rank">#5</span> <img src="https://flagcdn.com/w40/br.png" alt="Flag of Brazil" class="flag"> <span class="name">Brazil</span> <span class="value">33</span></li>
+            <li><span class="rank">#6</span> <img src="https://flagcdn.com/w40/be.png" alt="Flag of Belgium" class="flag"> <span class="name">Belgium</span> <span class="value">31</span></li>
+            <li><span class="rank">#7</span> <img src="https://flagcdn.com/w40/ca.png" alt="Flag of Canada" class="flag"> <span class="name">Canada</span> <span class="value">30</span></li>
+            <li><span class="rank">#8</span> <img src="https://flagcdn.com/w40/mc.png" alt="Flag of Monaco" class="flag"> <span class="name">Monaco</span> <span class="value">30</span></li>
+            <li><span class="rank">#9</span> <img src="https://flagcdn.com/w40/us.png" alt="Flag of United States" class="flag"> <span class="name">United States</span> <span class="value">29</span></li>
+            <li><span class="rank">#10</span> <img src="https://flagcdn.com/w40/jp.png" alt="Flag of Japan" class="flag"> <span class="name">Japan</span> <span class="value">29</span></li>
+          </ol>
+        </div>
+
       </div>
-      <div>
       
-      </div>
-      </div>
-    </section>
-  </main>
-
-  <!-- Scripts: embed the Vega-Lite spec -->
-  <script>
-    vegaEmbed('#map-viz', 'js/podiums_choropleth.vg.json', { actions:false });
-  </script>
+      <p class="caption" id="map-caption">
+        Choropleth shaded by total podiums (darker = more). Source: GP Racing Stats; Map: Natural Earth.
+      </p>
+    </div>
+  </section>
+</main>
+<script>
+  vegaEmbed('#map-viz', 'js/podiums_choropleth.vg.json', { actions: false });
+</script>
 
   <section id="driver-wins-section" class="section">
   <div class="container">
@@ -80,17 +94,8 @@
 <script>
   vegaEmbed('#driver-wins-viz', 'js/Driver_comp.vg.json', { actions: false });
 </script>
-<section id="top-10-section" class="section">
-  <div class="container">
-    <h2 class="title--md section__title"> Top 10 Countries circuits </h2>
-    <p class="section__lead"> Wins in these countries</p>
-  </div>
-  </section>  
-  <script>
-    vegaEmbed('#top-10-viz', 'js/top10.vg.json',{actions:false});
-    </script>
 
-</section>
+
 
 </body>
 </html>
