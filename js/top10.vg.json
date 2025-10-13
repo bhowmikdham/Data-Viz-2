@@ -10,7 +10,7 @@
     }
   ],
 
-  "data": { "url": "data/mclaren_podiums_by_country.csv" },
+  "data": { "url": "data/mclaren_podiums.csv" },
   "transform": [
     { "calculate": "datum[metric]", "as": "metricValue" },
     { "filter": "isValid(datum.metricValue)" },
@@ -24,5 +24,8 @@
     "tooltip": [{"field":"Country"},{"field":"metricValue","title":{"expr":"string"}}],
     "color": {"value":"#c2282f"}
   },
-  "config": {"view":{"stroke":null}}
+  "config": {
+    "view": { "stroke": null },
+    "axis": { "grid": false,"titleColor": "#d9d9db", "labelColor": "#d9d9db" }
+  }
 }
