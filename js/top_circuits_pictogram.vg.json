@@ -1,0 +1,65 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "A pictogram chart showing McLaren's F1 wins at their top 10 circuits.",
+  "width": 600,
+  "height": {"step": 30},
+  "background": "#0b0b0c",
+  "data": {
+    "values": [
+      {"Circuit": "Monte Carlo", "Wins": 16},
+      {"Circuit": "Silverstone", "Wins": 13},
+      {"Circuit": "Spa-Francorchamps", "Wins": 13},
+      {"Circuit": "Hungaroring", "Wins": 13},
+      {"Circuit": "Monza", "Wins": 11},
+      {"Circuit": "Montreal", "Wins": 9},
+      {"Circuit": "Interlagos", "Wins": 8},
+      {"Circuit": "Suzuka", "Wins": 7},
+      {"Circuit": "Melbourne", "Wins": 7},
+      {"Circuit": "Imola", "Wins": 6}
+    ]
+  },
+  "transform": [
+    {
+      "calculate": "sequence(1, datum.Wins)",
+      "as": "win_icons"
+    },
+    {
+      "flatten": ["win_icons"],
+      "as": ["win_number"]
+    }
+  ],
+  "mark": {
+    "type": "text",
+    "fontSize": 18,
+    "baseline": "middle"
+  },
+  "encoding": {
+    "y": {
+      "field": "Circuit",
+      "type": "ordinal",
+      "sort": {"field": "Wins", "op": "sum", "order": "descending"},
+      "axis": {"labelColor": "#e6e6e8", "title": null, "ticks": false, "domain": false}
+    },
+    "x": {
+      "field": "win_number",
+      "type": "quantitative",
+      "axis": {
+        "title": "Number of Wins",
+        "labelColor": "#a6a6ac",
+        "titleColor": "#a6a6ac",
+        "grid": false,
+        "ticks": true,
+        "tickCount": 5
+      }
+    },
+    "text": {"value": "🏎️"},
+    "tooltip": [
+      {"field": "Circuit"},
+      {"field": "Wins", "type": "quantitative"}
+    ]
+  },
+  "config": {
+    "view": {"stroke": null},
+    "axis": {"grid": false, "titleColor": "#d9d9db", "labelColor": "#d9d9db"}
+  }
+}
