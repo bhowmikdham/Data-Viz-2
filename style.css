@@ -74,7 +74,7 @@ body.site{
 .controls--inline{ display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
 
 .controls label, .vega-bindings label{
-  color: var(--muted);
+  color: var(--accent);
   font-size: 13px;
   letter-spacing: .08em;
   text-transform: uppercase;

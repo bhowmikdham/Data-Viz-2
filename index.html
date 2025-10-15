@@ -138,6 +138,39 @@
 </div>
 
 </section>
+<!-- Australian Connection Section - NEW VIZ -->
+    <section id="aussie-gp-section" class="section">
+      <div class="container">
+        <h2 class="title title--md section__title">The Australian Connection: Success Down Under</h2>
+        <p class="section__lead">For Australian fans, McLaren's story is particularly special. The team has a long and successful history at the Australian Grand Prix. The timeline below highlights every podium finish, showing their dominance during the Adelaide era and their multiple victories at Albert Park in Melbourne. It's a history now being proudly continued by Melbourne's own Oscar Piastri.</p>
+        <div id="aussie-gp-viz" class="viz viz--full" style="min-height: 350px;"></div>
+      </div>
+    </section>
+    
+<section id="aussie-section" class="section">
+      <div class="container">
+        <div class="pure-g" style="align-items: center;">
+          <div class="pure-u-1 pure-u-md-1-2">
+            <div style="padding-right: 24px;">
+              <h3 class="title title--sm">Ricciardo's Redemption & Piastri's Rise</h3>
+              <p class="section__lead" style="font-size: 15px; color: var(--muted);">
+                Two Australian drivers have made a significant mark on McLaren's modern era. <strong>Daniel Ricciardo</strong> delivered an emotional and hugely popular victory at the 2021 Italian Grand Prix, breaking a nine-year winless streak for the team.
+              </p>
+              <p class="section__lead" style="font-size: 15px; color: var(--muted);">
+                Following him, Melbourne's own <strong>Oscar Piastri</strong> has become a national hero and a cornerstone of the team's recent success. After a stellar debut season in 2023, he has since secured multiple wins and podiums, playing a key role in McLaren's return to championship-contending form.
+              </p>
+            </div>
+          </div>
+          <div class="pure-u-1 pure-u-md-1-2">
+            <div class="toplist-container" style="padding: 16px; border: 1px solid var(--grid); border-radius: 12px; background: #121214;">
+              <h3 class="title title--sm">Australian Drivers at McLaren</h3>
+              <ol class="toplist">
+                <li><span class="rank"><img src="https://flagcdn.com/w40/au.png" alt="Flag of Australia" class="flag"></span> <span class="name">Oscar Piastri (2023—)</span> <span class="value">9 Wins</span></li>
+                <li><span class="rank"><img src="https://flagcdn.com/w40/au.png" alt="Flag of Australia" class="flag"></span> <span class="name">Daniel Ricciardo (2021-22)</span> <span class="value">1 Win</span></li>
+              </ol>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -156,11 +189,13 @@
 
   </main>
 
+  
   <script>
     // Embed all Vega-Lite charts
     vegaEmbed('#timeline-viz', 'js/wins_over_time.vg.json', { actions: false });
     vegaEmbed('#map-viz', 'js/podiums_choropleth.vg.json', { actions: false });
     vegaEmbed('#driver-wins-viz', 'js/Driver_comp.vg.json', { actions: false });
+    vegaEmbed('#aussie-gp-viz', 'js/australian_gp_history.vg.json', { actions: false });
     // Note: The pictogram chart was removed in a previous step, so the script for it is also removed.
     // If you add it back, you'll need its vegaEmbed call here.
   </script>
