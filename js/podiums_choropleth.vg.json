@@ -8,7 +8,7 @@
   "width": 980,
   "height": 560,
   "background": "#0b0b0c",
-  "projection": { "type": "mercator" },
+  "projection": { "type": "mercator", "scale": 180 },
 
   "params": [
   {
@@ -24,7 +24,7 @@
 ],
 
 
-  "projection": { "type": "mercator", "scale": 180 },
+  
 
 "layer": [
   

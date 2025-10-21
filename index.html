@@ -138,7 +138,7 @@
 </div>
 
 </section>
-<!-- Australian Connection Section - NEW VIZ -->
+<!-- Australian Connection Section-->
     <section id="aussie-gp-section" class="section">
       <div class="container">
         <h2 class="title title--md section__title">The Australian Connection: Success Down Under</h2>
@@ -184,6 +184,9 @@
         <p class="caption">
           Data Sources: Win and podium data sourced from STATS F1 and GP Racing Stats. Geographic data from Natural Earth. Country flag icons from flagcdn.com.
         </p>
+        <p class="caption">
+           AI use Declaration : AI was used to assist and expedite the coding process and help with the visualisation....
+          </p>
       </div>
     </footer>
 
@@ -191,13 +194,11 @@
 
   
   <script>
-    // Embed all Vega-Lite charts
+    //Vega-Lite charts
     vegaEmbed('#timeline-viz', 'js/wins_over_time.vg.json', { actions: false });
     vegaEmbed('#map-viz', 'js/podiums_choropleth.vg.json', { actions: false });
     vegaEmbed('#driver-wins-viz', 'js/Driver_comp.vg.json', { actions: false });
     vegaEmbed('#aussie-gp-viz', 'js/australian_gp_history.vg.json', { actions: false });
-    // Note: The pictogram chart was removed in a previous step, so the script for it is also removed.
-    // If you add it back, you'll need its vegaEmbed call here.
   </script>
 
 </body>

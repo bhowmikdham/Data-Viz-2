@@ -71,7 +71,7 @@
       "mark": {"type": "line", "color": "#ff7a00"}
     },
     {
-      "mark": {"type": "point", "color": "#ff7a00", "filled": true, "size": 50}
+       "mark": {"type": "point", "color": "#ff7a00", "filled": true, "size": 50}
     }
   ],
   "config": {

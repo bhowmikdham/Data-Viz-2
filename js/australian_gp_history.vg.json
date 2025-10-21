@@ -82,7 +82,7 @@
         "filled": true
       },
       "encoding": {
-        "x": {"field": "Year", "type": "quantitative", "axis": {"format": "d", "labelAngle": 0, "grid": false}, "scale": {"domainMin": 1985, "domainMax": 2026, "nice": false,"zero": false}},
+        "x": {"field": "Year", "type": "quantitative", "axis": {"title":"Year","format": "d", "labelAngle": 0, "grid": false}, "scale": {"domainMin": 1985, "domainMax": 2026, "nice": false,"zero": false}},
         "y": {"field": "Pos", "type": "ordinal", "axis": {"title": "Podium Position", "labelExpr": "{'1': '1st', '2': '2nd', '3': '3rd'}[datum.value]"}},
         "color": {
           "condition": [{"test": "datum.Pos == 1", "value": "#FFD700"}, {"test": "datum.Pos == 2", "value": "#C0C0C0"}],
